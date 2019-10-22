@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        给定两个大小为 m 和 n 的有序数组 nums1 和 nums2。
+
+        请你找出这两个有序数组的中位数，并且要求算法的时间复杂度为 O(log(m + n))。
+
+        你可以假设 nums1 和 nums2 不会同时为空。
+
+        示例 1:
+
+        nums1 = [1, 3]
+        nums2 = [2]
+
+        则中位数是 2.0
+
+        示例 2:
+
+        nums1 = [1, 2]
+        nums2 = [3, 4]
+
+        则中位数是 (2 + 3)/2 = 2.5
+    </div>
+    <script>
+        var findMedianSortedArrays = function (nums1, nums2) {
+
+            let num = [...nums1, ...nums2].sort((a, b) => a - b)
+            console.log(num)
+            if (num.length % 2 === 0) {
+                // 偶数长度
+                return (num[num.length / 2 - 1] + num[num.length / 2]) / 2
+            } else {
+                // 奇数长度
+                return num[(num.length - 1) / 2]
+            }
+
+        };
+        // findMedianSortedArrays([3, 5, 8], [10, 12])
+        findMedianSortedArrays([3], [-2, -1])
+    </script>
+</body>
+
+</html>
