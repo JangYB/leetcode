@@ -34,17 +34,21 @@
                 j = 0;
                 k = 0;
                 while (s[i + j] === s[i - j] && s[i + j] && s[i - j]) {
+                    console.log(s[i + j]);
+
                     j++;
                 };
-                palindromes.push(s.slice(i - (j - 1), i + j)) //even palindromes
+                palindromes.push(s.slice(i - (j - 1), i + j)) //偶数 palindromes
                 j = 0;
-
+                console.log('偶数:', palindromes);
                 while (s[(i + 1) + k] === s[i - k] && s[(i + 1) + k] && s[i - k]) {
                     k++;
                 }
-                palindromes.push(s.slice(i - (k - 1), (i + 1) + k)) //odd palindromes
+                palindromes.push(s.slice(i - (k - 1), (i + 1) + k)) //奇数 palindromes
                 k = 0;
+                console.log('奇数:', palindromes);
             }
+            console.log('合计:', palindromes);
             return palindromes.sort((a, b) => {
                 return b.length - a.length
             })[0];
@@ -53,6 +57,33 @@
 
 
         longestPalindrome('aba')
+
+        // function palindrome(str) {
+        //     var re = /[^A-Za-z0-9]/g;
+        //     str = str.toLowerCase().replace(re, '');
+        //     console.log(str);
+
+        //     var len = str.length;
+        //     for (var i = 0; i < len / 2; i++) {
+        //         if (str[i] !== str[len - 1 - i]) {
+        //             return false;
+        //         }
+        //     }
+        //     return true;
+        // }
+
+        // function palindrome(str) {
+
+        //     var str1 = str.toLowerCase();
+        //     var reg = /[\W\_]/g;
+        //     var str2 = str1.replace(reg, "");
+        //     var str3 = str2.split("");
+        //     var str4 = str3.reverse();
+        //     var str5 = str4.join("");
+
+        //     return str2 === str5;
+        // }
+        // palindrome('aeyea')
     </script>
 </body>
 
