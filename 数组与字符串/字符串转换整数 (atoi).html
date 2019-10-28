@@ -55,6 +55,7 @@
         因此返回 INT_MIN (−231) 。
     </div>
     <script>
+        // 方法1
         var myAtoi = function (str) {
             str = str.replace(/(^\s*)|(\s*$)/g, "");//去掉字符串最前面的空格，中间的不用管
             var str1 = "";
@@ -78,6 +79,23 @@
             if (isNaN(str1 - 0)) return 0//"+"/"-"这种情况,返回0
             return str1 - 0
         };
+
+        // 方法2
+        var myAtoi = function (str) {
+            str = str.trim();
+            if (!/^[+|-]?\d+/.test(str)) return 0;
+            let val = parseInt(str.match(/^[+|-]?\d+/));
+            let base = Math.pow(2, 31)
+            let min = -base;
+            let max = base - 1;
+            return Math.max(Math.min(val, max), min)
+        };
+
+        // 方法3
+        var myAtoi = function (str) {
+            return Math.max(Math.min(parseInt(str.trim().match(/^[+|-]?\d+/) || 0), Math.pow(2, 31) - 1), -Math.pow(2, 31))
+        };
+
         myAtoi('words and 987')
     </script>
 </body>
