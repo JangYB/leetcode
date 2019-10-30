@@ -23,16 +23,27 @@
         你可以在常数空间复杂度内完成这个题目吗？（ 出于对空间复杂度分析的目的，输出数组不被视为额外空间。）
     </div>
     <script>
-        // 硬解,时间超时
+        // method:1,  error Timeout method
+        // var productExceptSelf = function (nums) {
+        //     let myArr = []
+        //     nums.forEach((element, index) => {
+        //         let fz = [].concat(nums)
+        //         fz.splice(index, 1)
+        //         myArr[index] = 1
+        //         for (let i = 0; i < fz.length; i++) {
+        //             myArr[index] = myArr[index] * fz[i]
+        //         }
+        //     });
+        //     return myArr
+        // };
+        // method:2
         var productExceptSelf = function (nums) {
             let myArr = []
             nums.forEach((element, index) => {
                 let fz = [].concat(nums)
                 fz.splice(index, 1)
-                myArr[index] = 1
-                for (let i = 0; i < fz.length; i++) {
-                    myArr[index] = myArr[index] * fz[i]
-                }
+                const reducer = (accumulator, currentValue) => accumulator * currentValue;
+                myArr[index] = fz.reduce(reducer, 1)
             });
             return myArr
         };
