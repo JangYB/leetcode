@@ -1,2 +1,3 @@
 # leetcode
-leetcode 习题
+leetcode Exercise
+One question per day
