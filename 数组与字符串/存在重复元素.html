@@ -29,8 +29,19 @@
   </div>
   <script>
     var containsDuplicate = function (nums) {
-
+      let arr = []
+      for (let i = 0; i < nums.length; i++) {
+        if (arr.indexOf(nums[i]) == -1) {
+          arr.push(nums[i])
+        }
+      }
+      if (nums.length > arr.length) {
+        return true
+      } else {
+        return false
+      }
     };
+    containsDuplicate([1, 2, 3, 1])
   </script>
 </body>
 
