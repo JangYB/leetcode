@@ -23,34 +23,31 @@
          * @return {number}
          */
         var threeSumClosest = function (nums, target) {
-            let ans = [];
-            let obj = {};
             const len = nums.length;
-            if (nums == null || len < 3) return ans;
+            if (len < 3) return null;
             nums.sort((a, b) => a - b); // 排序
+            let res = target - (nums[0] + nums[1] + nums[2]);
             for (let i = 0; i < len; i++) {
-                // if (nums[i] > 0) break; // 如果当前数字大于0，则三数之和一定大于0，所以结束循环
-                // if (i > 0 && nums[i] == nums[i - 1]) continue; // 去重
                 let L = i + 1;
                 let R = len - 1;
                 while (L < R) {
                     const sum = nums[i] + nums[L] + nums[R];
-                    // if (sum == 0) {
-                    ans.push(sum);
-                    // ans[sum] = 
-                    obj[target - sum] = [nums[i], nums[L], nums[R]]
-                    while (L < R && nums[L] == nums[L + 1]) L++; // 去重
-                    while (L < R && nums[R] == nums[R - 1]) R--; // 去重
-                    L++;
-                    R--;
-                    // }
-                    // else if (sum < 0) L++;
-                    // else if (sum > 0) R--;
+                    if (sum === target) {
+                        return sum;
+                    } else if (sum < target) {
+                        // sum < target 时，left++
+                        while (nums[L] === nums[++L]);
+                    } else {
+                        // sum > target时，right--
+                        while (nums[R] === nums[--R]);
+                    }
+                    // 存储与 target 最近的值
+                    if (Math.abs(sum - target) < Math.abs(res)) {
+                        res = target - sum;
+                    }
                 }
             }
-            // parseInt(Object.keys(obj))
-            Math.max(...Object.keys(obj))
-            return obj[Math.min(...Object.keys(obj))].reduce((a, b) => a + b);
+            return target - res;
         };
         threeSumClosest([-1, 2, 1, -4], 1) // 2 (-1 + 2 + 1 = 2)
     </script>
